@@ -11,6 +11,17 @@
                 <th>{{ category.name }}</th>
             </tr>
             </thead>
+            <tbody>
+                {% for subcategory in category.subcategories %}
+                    <tr>
+                        <td><a href="{{ path('forum.subcategory', {id: subcategory.id}) }}">{{ subcategory.name }}</a></td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td>Aucune sous-catégorie trouvée...</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
         </table>
     {% else %}
         <p>Aucune catégorie n'a été trouvée...</p>
