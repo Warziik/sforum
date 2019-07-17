@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Se connecter - {{ parent() }}{% endblock %}
+
+{% block body %}
+    <h1>Se connecter</h1>
+    {% if error %}
+        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+    {% endif %}
+    <form method="post">
+        <input type="text" value="{{ last_username }}" name="_username" class="form-control" placeholder="Nom d'utilisateur" required autofocus>
+        <input type="password" name="_password" class="form-control" placeholder="Mot de passe" required>
+        <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+
+        <div class="checkbox mb-3">
+            <label>
+                <input type="checkbox" name="_remember_me"> Se souvenir de moi
+            </label>
+        </div>
+
+        <button class="btn btn-primary" type="submit">Se connecter</button>
+    </form>
+{% endblock %}
