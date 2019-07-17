@@ -17,14 +17,15 @@ class ForumController extends AbstractController {
     }
 
     /**
-     * @Route("/{id<\d+>}", name="forum.subcategory", methods={"GET"})
+     * @Route("/{slug}-{id}", name="forum.subcategory", methods={"GET"}, requirements={"slug"="^[a-zA-Z0-9-_]+$", "id"="\d+"})
+     * @param string $slug
      * @param int $id
      * @param SubcategoryRepository $subcategoryRepository
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function showSubCategory(int $id, SubcategoryRepository $subcategoryRepository) {
+    public function showSubCategory(string $slug, int $id, SubcategoryRepository $subcategoryRepository) {
         $subcategory = $subcategoryRepository->find($id);
-        if (is_null($subcategory)) {
+        if (is_null($subcategory) || $slug != $subcategory->getSlug()) {
             return $this->redirectToRoute('home');
         }
         return $this->render('forum/subcategory.html.twig', ['subcategory' => $subcategory]);

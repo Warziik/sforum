@@ -14,7 +14,7 @@
             <tbody>
                 {% for subcategory in category.subcategories %}
                     <tr>
-                        <td><a href="{{ path('forum.subcategory', {id: subcategory.id}) }}">{{ subcategory.name }}</a></td>
+                        <td><a href="{{ path('forum.subcategory', {slug: subcategory.slug, id: subcategory.id}) }}">{{ subcategory.name }}</a></td>
                     </tr>
                 {% else %}
                     <tr>
