@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use Cocur\Slugify\Slugify;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -45,6 +46,12 @@ class Category
     public function getName(): ?string
     {
         return $this->name;
+    }
+
+    public function getSlug(): ?string
+    {
+        $slug = new Slugify();
+        return $slug->slugify($this->getName());
     }
 
     public function setName(string $name): self

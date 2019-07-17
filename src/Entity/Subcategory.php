@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use Cocur\Slugify\Slugify;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -39,6 +40,12 @@ class Subcategory
     public function getName(): ?string
     {
         return $this->name;
+    }
+
+    public function getSlug(): ?string
+    {
+        $slug = new Slugify();
+        return $slug->slugify($this->getName());
     }
 
     public function setName(string $name): self
