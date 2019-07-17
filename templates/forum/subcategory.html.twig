@@ -4,4 +4,29 @@
 
 {% block body %}
     <h1>{{ subcategory.name }}</h1>
+    <!--<button class="btn btn-primary"><a href="#">Nouveau sujet</a></button>-->
+    {% if subcategory.topics is empty %}
+        <p>Aucun sujet trouvé.</p>
+    {% else %}
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Titre</th>
+                <th>Auteur</th>
+                <th>Date de création</th>
+                <th>Dernière mise à jour</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for topic in subcategory.topics %}
+                <tr>
+                    <td>{{ topic.title }}</td>
+                    <td><a href="#">{{ topic.author.username }}</a></td>
+                    <td>{{ topic.createdAt | date('Y-m-d H:i:s') }}</td>
+                    <td>{{ topic.updatedAt | date('Y-m-d H:i:s') }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
 {% endblock %}
