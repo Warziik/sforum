@@ -4,4 +4,15 @@
 
 {% block body %}
     <h1>Accueil</h1>
+    {% for category in categories %}
+        <table class="table">
+            <thead>
+            <tr>
+                <th>{{ category.name }}</th>
+            </tr>
+            </thead>
+        </table>
+    {% else %}
+        <p>Aucune catégorie n'a été trouvée...</p>
+    {% endfor %}
 {% endblock %}
