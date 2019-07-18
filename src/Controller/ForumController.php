@@ -55,7 +55,7 @@ class ForumController extends AbstractController {
             $em->flush();
 
             $this->addFlash('success', 'Votre sujet a bien été crée.');
-            return $this->redirectToRoute('home');
+            return $this->redirectToRoute('forum.topic_show', ['slug' => $topic->getSlug(), 'id' => $topic->getId()]);
         }
         return $this->render('forum/topic/new.html.twig', ['form' => $form->createView()]);
     }

@@ -20,7 +20,7 @@
             {% for topic in subcategory.topics %}
                 <tr>
                     <td><a href="{{ path('forum.topic_show', {slug: topic.slug, id: topic.id}) }}">{{ topic.title }}</a></td>
-                    <td><a href="#">{{ topic.author.username }}</a></td>
+                    <td><a href="{{ path('user.profile', {id: topic.author.id}) }}">{{ topic.author.username }}</a></td>
                     <td>{{ topic.createdAt | date('Y-m-d H:i:s') }}</td>
                     {% if topic.updatedAt is null %}
                         <td></td>

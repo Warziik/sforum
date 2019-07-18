@@ -12,7 +12,7 @@
         </form>
     {% endif %}
     <h1>{{ topic.title }}</h1>
-    <p>{{ topic.createdAt | date('Y-m-d H:i:s') }} - <a href="#">{{ topic.author.username }}</a></p>
+    <p>{{ topic.createdAt | date('Y-m-d H:i:s') }} - <a href="{{ path('user.profile', {id: topic.author.id}) }}">{{ topic.author.username }}</a></p>
     <hr>
     <p>{{ topic.content }}</p>
 {% endblock %}
