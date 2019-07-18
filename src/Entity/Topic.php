@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use Cocur\Slugify\Slugify;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\TopicRepository")
@@ -20,21 +21,27 @@ class Topic
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank()
+     * @Assert\Length(min=5, max=80)
      */
     private $title;
 
     /**
      * @ORM\Column(type="text")
+     * @Assert\NotBlank()
+     * @Assert\Length(min=3)
      */
     private $content;
 
     /**
      * @ORM\Column(type="datetime", name="created_at")
+     * @Assert\Type("\DateTime")
      */
     private $createdAt;
 
     /**
      * @ORM\Column(type="datetime", name="updated_at", nullable=true)
+     * @Assert\Type("\DateTime")
      */
     private $updatedAt;
 
