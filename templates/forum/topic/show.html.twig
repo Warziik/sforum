@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ topic.title }} - {{ parent() }}{% endblock %}
+
+{% block body %}
+    {% if is_granted('IS_AUTHENTICATED_FULLY') and app.user.id is same as(topic.author.id) %}
+        <p><a href="{{ path('forum.topic_edit', {slug: topic.slug, id: topic.id}) }}">Éditer</a></p>
+        <form action="{{ path('forum.topic_delete', {slug: topic.slug, id: topic.id}) }}" method="POST" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer ce sujet ? (action irréversible)')">
+            <input type="hidden" name="_method" value="DELETE">
+            <input type="hidden" name="_token" value="{{ csrf_token('delete-topic-' ~ topic.id) }}">
+            <button class="btn btn-danger">Supprimer</button>
+        </form>
+    {% endif %}
+    <h1>{{ topic.title }}</h1>
+    <p>{{ topic.createdAt | date('Y-m-d H:i:s') }} - <a href="#">{{ topic.author.username }}</a></p>
+    <hr>
+    <p>{{ topic.content }}</p>
+{% endblock %}

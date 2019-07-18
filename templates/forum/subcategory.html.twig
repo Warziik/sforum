@@ -4,7 +4,6 @@
 
 {% block body %}
     <h1>{{ subcategory.name }}</h1>
-    <!--<button class="btn btn-primary"><a href="#">Nouveau sujet</a></button>-->
     {% if subcategory.topics is empty %}
         <p>Aucun sujet trouvé.</p>
     {% else %}
@@ -20,10 +19,14 @@
             <tbody>
             {% for topic in subcategory.topics %}
                 <tr>
-                    <td>{{ topic.title }}</td>
+                    <td><a href="{{ path('forum.topic_show', {slug: topic.slug, id: topic.id}) }}">{{ topic.title }}</a></td>
                     <td><a href="#">{{ topic.author.username }}</a></td>
                     <td>{{ topic.createdAt | date('Y-m-d H:i:s') }}</td>
-                    <td>{{ topic.updatedAt | date('Y-m-d H:i:s') }}</td>
+                    {% if topic.updatedAt is null %}
+                        <td></td>
+                    {% else %}
+                        <td>{{ topic.updatedAt | date('Y-m-d H:i:s') }}</td>
+                    {% endif %}
                 </tr>
             {% endfor %}
             </tbody>

@@ -23,7 +23,7 @@ class SubcategoryFixtures extends Fixture
     public function load(ObjectManager $manager)
     {
         for ($i = 1; $i < 10; $i++) {
-            $c = $this->categoryRepository->find(19);
+            $c = $this->categoryRepository->find(rand(1, 4));
 
             $subcategory = new Subcategory();
             $subcategory->setName('Sous-catégorie n°' . $i);

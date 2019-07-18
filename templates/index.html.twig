@@ -4,6 +4,7 @@
 
 {% block body %}
     <h1>Accueil</h1>
+    <a href="{{ path('forum.topic_new') }}"><button class="btn btn-primary">Nouveau sujet</button></a>
     {% for category in categories %}
         <table class="table">
             <thead>
