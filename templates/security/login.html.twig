@@ -4,6 +4,7 @@
 
 {% block body %}
     <h1>Se connecter</h1>
+    {% include '_flash_messages.html.twig' %}
     {% if error %}
         <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
     {% endif %}

@@ -3,6 +3,7 @@
 {% block title %}{{ topic.title }} - {{ parent() }}{% endblock %}
 
 {% block body %}
+    {% include '_flash_messages.html.twig' %}
     {% if is_granted('IS_AUTHENTICATED_FULLY') and app.user.id is same as(topic.author.id) %}
         <p><a href="{{ path('forum.topic_edit', {slug: topic.slug, id: topic.id}) }}">Éditer</a></p>
         <form action="{{ path('forum.topic_delete', {slug: topic.slug, id: topic.id}) }}" method="POST" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer ce sujet ? (action irréversible)')">
