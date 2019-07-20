@@ -61,6 +61,11 @@ class User implements UserInterface
      */
     private $topics;
 
+    /**
+     * @ORM\Column(type="string", length=60, nullable=true)
+     */
+    private $resetPasswordToken;
+
     public function __construct()
     {
         $this->roles = ['ROLE_USER'];
@@ -204,6 +209,18 @@ class User implements UserInterface
                 $topic->setAuthor(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getResetPasswordToken(): ?string
+    {
+        return $this->resetPasswordToken;
+    }
+
+    public function setResetPasswordToken(?string $resetPasswordToken): self
+    {
+        $this->resetPasswordToken = $resetPasswordToken;
 
         return $this;
     }
