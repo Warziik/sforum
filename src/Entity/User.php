@@ -66,11 +66,17 @@ class User implements UserInterface
      */
     private $resetPasswordToken;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\TopicResponse", mappedBy="author", orphanRemoval=true)
+     */
+    private $topicResponses;
+
     public function __construct()
     {
         $this->roles = ['ROLE_USER'];
         $this->createdAt = new \DateTime();
         $this->topics = new ArrayCollection();
+        $this->topicResponses = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -221,6 +227,37 @@ class User implements UserInterface
     public function setResetPasswordToken(?string $resetPasswordToken): self
     {
         $this->resetPasswordToken = $resetPasswordToken;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|TopicResponse[]
+     */
+    public function getTopicResponses(): Collection
+    {
+        return $this->topicResponses;
+    }
+
+    public function addTopicResponse(TopicResponse $topicResponse): self
+    {
+        if (!$this->topicResponses->contains($topicResponse)) {
+            $this->topicResponses[] = $topicResponse;
+            $topicResponse->setAuthor($this);
+        }
+
+        return $this;
+    }
+
+    public function removeTopicResponse(TopicResponse $topicResponse): self
+    {
+        if ($this->topicResponses->contains($topicResponse)) {
+            $this->topicResponses->removeElement($topicResponse);
+            // set the owning side to null (unless already changed)
+            if ($topicResponse->getAuthor() === $this) {
+                $topicResponse->setAuthor(null);
+            }
+        }
 
         return $this;
     }

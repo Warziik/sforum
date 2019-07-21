@@ -21,7 +21,27 @@
         </form>
         <hr>
     {% endif %}
-    <p>{{ topic.createdAt | date('Y-m-d H:i:s') }} - <a href="{{ path('user.profile', {id: topic.author.id}) }}">{{ topic.author.username }}</a></p>
-    <hr>
-    <p>{{ topic.content }}</p>
+    <div class="pt-3 pl-3 pr-3">
+        <p>{{ topic.createdAt | date('Y-m-d H:i:s') }} - <a href="{{ path('user.profile', {id: topic.author.id}) }}">{{ topic.author.username }}</a></p>
+        <p>{{ topic.content }}</p>
+    </div>
+    {% for response in topic.responses %}
+        <br>
+        <div class="text-light bg-dark">
+            <div class="pt-3 pl-3 pr-3 pb-3">
+                <p>{{ response.createdAt | date('Y-m-d H:i:s') }} - <a class="text-light" href="{{ path('user.profile', {id: response.author.id}) }}"><strong>{{ response.author.username }}</strong></a></p>
+                <p>{{ response.content }}</p>
+            </div>
+        </div>
+    {% endfor %}
+    {% if app.user %}
+        <hr>
+        {{ form_start(form) }}
+            {{ form_widget(form) }}
+            <button class="btn btn-secondary btn-block btn-sm"><i class="fas fa-reply"></i> Répondre</button>
+        {{ form_end(form) }}
+    {% else %}
+        <hr>
+        <p align="center">Vous devez vous <a href="{{ path('security.login') }}">connecter</a> pour répondre à ce sujet.</p>
+    {% endif %}
 {% endblock %}

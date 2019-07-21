@@ -18,6 +18,7 @@
             <tr>
                 <th>Titre</th>
                 <th>Auteur</th>
+                <th>Réponses</th>
                 <th>Date de création</th>
                 <th>Dernière mise à jour</th>
             </tr>
@@ -27,6 +28,7 @@
                 <tr>
                     <td><a href="{{ path('forum.topic_show', {slug: topic.slug, id: topic.id}) }}">{{ topic.title }}</a></td>
                     <td><a href="{{ path('user.profile', {id: topic.author.id}) }}">{{ topic.author.username }}</a></td>
+                    <td>{{ topic.responses | length }}</td>
                     <td>{{ topic.createdAt | date('Y-m-d H:i:s') }}</td>
                     {% if topic.updatedAt is null %}
                         <td></td>

@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use Cocur\Slugify\Slugify;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -56,9 +58,15 @@ class Topic
      */
     private $subcategory;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\TopicResponse", mappedBy="topic", orphanRemoval=true)
+     */
+    private $responses;
+
     public function __construct()
     {
         $this->createdAt = new \DateTime();
+        $this->responses = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -140,6 +148,37 @@ class Topic
     public function setSubcategory(?Subcategory $subcategory): self
     {
         $this->subcategory = $subcategory;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|TopicResponse[]
+     */
+    public function getResponses(): Collection
+    {
+        return $this->responses;
+    }
+
+    public function addResponse(TopicResponse $response): self
+    {
+        if (!$this->responses->contains($response)) {
+            $this->responses[] = $response;
+            $response->setTopic($this);
+        }
+
+        return $this;
+    }
+
+    public function removeResponse(TopicResponse $response): self
+    {
+        if ($this->responses->contains($response)) {
+            $this->responses->removeElement($response);
+            // set the owning side to null (unless already changed)
+            if ($response->getTopic() === $this) {
+                $response->setTopic(null);
+            }
+        }
 
         return $this;
     }
