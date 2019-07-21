@@ -3,6 +3,12 @@
 {% block title %}{{ subcategory.name }} - {{ parent() }}{% endblock %}
 
 {% block body %}
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{{ path('home') }}">Accueil</a></li>
+            <li class="breadcrumb-item active" aria-current="page">{{ subcategory.name }}</li>
+        </ol>
+    </nav>
     <h1>{{ subcategory.name }}</h1>
     {% if subcategory.topics is empty %}
         <p>Aucun sujet trouvé.</p>

@@ -100,7 +100,7 @@ class SecurityController extends AbstractController {
             $this->em->flush();
 
             $forgotPasswordNotification->notify($findUser);
-            $this->addFlash('success', "Un mail vient de vous être envoyé à l'adresse <strong>" . $findUser->getEmail() . "</strong>");
+            $this->addFlash('success', "Un mail vient de vous être envoyé à l'adresse email indiquée.");
             return $this->redirectToRoute('home');
         }
         return $this->render('security/forgotPassword.html.twig', ['form' => $form->createView()]);

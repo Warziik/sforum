@@ -6,6 +6,7 @@ use App\Entity\Subcategory;
 use App\Entity\Topic;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -16,10 +17,11 @@ class TopicType extends AbstractType
     {
         $builder
             ->add('title', TextType::class, ['label' => 'Titre du sujet'])
-            ->add('content', TextType::class, ['label' => 'Contenu'])
+            ->add('content', TextareaType::class, ['label' => 'Contenu'])
             ->add('subcategory', EntityType::class, [
                 'class' => Subcategory::class,
-                'choice_label' => 'name'
+                'choice_label' => 'name',
+                'label' => 'Sous-catégorie parente'
             ])
         ;
     }

@@ -3,15 +3,15 @@
 {% block title %}Accueil - {{ parent() }}{% endblock %}
 
 {% block body %}
-    <h1>Accueil</h1>
     {% include '_flash_messages.html.twig' %}
-    <a href="{{ path('forum.topic_new') }}"><button class="btn btn-primary">Nouveau sujet</button></a>
+    <h1>Accueil</h1>
+    <p><a href="{{ path('forum.topic_new') }}"><button class="btn btn-secondary btn-sm"><i class="fas fa-plus"></i> Nouveau sujet</button></a></p>
     {% for category in categories %}
         <table class="table">
-            <thead>
-            <tr>
-                <th>{{ category.name }}</th>
-            </tr>
+            <thead class="thead-dark">
+                <tr>
+                    <th>{{ category.name }}</th>
+                </tr>
             </thead>
             <tbody>
                 {% for subcategory in category.subcategories %}
@@ -25,6 +25,7 @@
                 {% endfor %}
             </tbody>
         </table>
+        <br>
     {% else %}
         <p>Aucune catégorie n'a été trouvée...</p>
     {% endfor %}

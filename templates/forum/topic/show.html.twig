@@ -4,15 +4,23 @@
 
 {% block body %}
     {% include '_flash_messages.html.twig' %}
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{{ path('home') }}">Accueil</a></li>
+            <li class="breadcrumb-item"><a href="{{ path('forum.subcategory', {slug: topic.subcategory.slug, id: topic.subcategory.id}) }}">{{ topic.subcategory.name }}</a></li>
+            <li class="breadcrumb-item active" aria-current="page">{{ topic.title }}</li>
+        </ol>
+    </nav>
+    <h1>{{ topic.title }}</h1>
     {% if is_granted('IS_AUTHENTICATED_FULLY') and app.user.id is same as(topic.author.id) %}
-        <p><a href="{{ path('forum.topic_edit', {slug: topic.slug, id: topic.id}) }}">Éditer</a></p>
-        <form action="{{ path('forum.topic_delete', {slug: topic.slug, id: topic.id}) }}" method="POST" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer ce sujet ? (action irréversible)')">
+        <a class="btn btn-light btn-sm" href="{{ path('forum.topic_edit', {slug: topic.slug, id: topic.id}) }}"><i class="fas fa-pencil-alt"></i> Éditer</a>
+        <form style="display: inline-block;" action="{{ path('forum.topic_delete', {slug: topic.slug, id: topic.id}) }}" method="POST" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer ce sujet ? (action irréversible)')">
             <input type="hidden" name="_method" value="DELETE">
             <input type="hidden" name="_token" value="{{ csrf_token('delete-topic-' ~ topic.id) }}">
-            <button class="btn btn-danger">Supprimer</button>
+            <button class="btn btn-danger btn-sm"><i class="fas fa-trash-alt"></i> Supprimer</button>
         </form>
+        <hr>
     {% endif %}
-    <h1>{{ topic.title }}</h1>
     <p>{{ topic.createdAt | date('Y-m-d H:i:s') }} - <a href="{{ path('user.profile', {id: topic.author.id}) }}">{{ topic.author.username }}</a></p>
     <hr>
     <p>{{ topic.content }}</p>
