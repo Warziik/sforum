@@ -5,15 +5,18 @@ namespace App\DataFixtures;
 use App\Entity\Category;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
+use Faker\Factory;
 
 class CategoryFixtures extends Fixture
 {
     public function load(ObjectManager $manager)
     {
-        for ($i = 0; $i < 4; $i++) {
+        $faker = Factory::create();
+        for ($i = 0; $i <= 4; $i++) {
             $category = new Category();
-            $category->setName('Catégorie n°' . $i);
+            $category->setName($faker->word);
             $manager->persist($category);
+            $this->addReference('category-' . $i, $category);
         }
         $manager->flush();
     }
