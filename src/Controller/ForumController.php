@@ -124,6 +124,7 @@ class ForumController extends AbstractController {
         $form = $this->createForm(TopicType::class, $topic);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
+            $topic->setUpdatedAt(new \DateTime());
             $this->em->flush();
 
             $this->addFlash('success', 'Votre sujet a bien été modifié.');
@@ -141,7 +142,7 @@ class ForumController extends AbstractController {
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
-    public function delete(string $slug, int $id, Request $request) {
+    public function deleteTopic(string $slug, int $id, Request $request) {
         $topic = $this->topicRepository->find($id);
         if (
             $this->getUser()->getId() != $topic->getAuthor()->getId() ||
