@@ -74,7 +74,7 @@ class User implements UserInterface
     private $imageFile;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Topic", mappedBy="author")
+     * @ORM\OneToMany(targetEntity="App\Entity\Topic", mappedBy="author", orphanRemoval=true)
      */
     private $topics;
 
