@@ -12,6 +12,7 @@ easy_admin:
           - { property: 'email', label: 'Adresse email' }
           - { property: 'roles', label: 'Rôle'}
           - { property: 'createdAt', label: "Date d'inscription"}
+          - { property: 'confirmed', label: 'Confirmé' }
       form:
         fields:
           - { property: 'imageFile', label: 'Avatar', type: 'file', type_options: { required: false }}

@@ -8,13 +8,13 @@
         <h1>Se connecter</h1>
         {% include '_flash_messages.html.twig' %}
         {% if error %}
-            <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+            <div align="center" class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
         {% endif %}
         <div class="form-group">
-            <input type="text" value="{{ last_username }}" name="_username" class="form-control" placeholder="Nom d'utilisateur" required autofocus>
+            <input type="text" value="{{ last_username }}" name="username" class="form-control" placeholder="Nom d'utilisateur ou adresse email" required autofocus>
         </div>
         <div class="form-group">
-            <input type="password" name="_password" class="form-control" placeholder="Mot de passe" required>
+            <input type="password" name="password" class="form-control" placeholder="Mot de passe" required>
         </div>
         <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
         <div class="checkbox mb-3">

@@ -1,0 +1,7 @@
+<h1>Confirmation de votre compte</h1>
+<p>Bonjour <strong>{{ user.username }}</strong>, afin de confirmer votre inscription sur notre forum, veuillez cliquer sur le lien ci-dessous. Attention, si vous n'avez pas effectué cette demande, veuillez ignorer cet email.</p>
+<a href="{{ url('security.accountConfirmation', {id: user.id, token: user.accountConfirmationToken}) }}">Confirmer mon compte</a>
+
+<br>
+<br>
+<p>L'équipe SForum.</p>

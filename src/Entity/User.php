@@ -93,11 +93,22 @@ class User implements UserInterface
      */
     private $updatedAt;
 
+    /**
+     * @ORM\Column(type="string", length=60, nullable=true)
+     */
+    private $accountConfirmationToken;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $confirmed;
+
     public function __construct()
     {
         $this->roles = ['ROLE_USER'];
         $this->createdAt = new \DateTime();
         $this->avatar = 'default.png';
+        $this->confirmed = false;
         $this->topics = new ArrayCollection();
         $this->topicResponses = new ArrayCollection();
     }
@@ -337,6 +348,30 @@ class User implements UserInterface
     public function setUpdatedAt(?\DateTimeInterface $updatedAt): self
     {
         $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    public function getAccountConfirmationToken(): ?string
+    {
+        return $this->accountConfirmationToken;
+    }
+
+    public function setAccountConfirmationToken(?string $accountConfirmationToken): self
+    {
+        $this->accountConfirmationToken = $accountConfirmationToken;
+
+        return $this;
+    }
+
+    public function getConfirmed(): ?bool
+    {
+        return $this->confirmed;
+    }
+
+    public function setConfirmed(bool $confirmed): self
+    {
+        $this->confirmed = $confirmed;
 
         return $this;
     }

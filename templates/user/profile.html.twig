@@ -3,6 +3,12 @@
 {% block title %}{{ user.username }} - {{ parent() }}{% endblock %}
 
 {% block body %}
+    {% if not user.confirmed %}
+        <div align="center" class="alert alert-warning">
+            Ce compte n'est pas encore validé.
+        </div>
+    {% endif %}
+    {% include '_flash_messages.html.twig' %}
     <div class="row">
         <div class="col-sm-2">
             <img src="{{ vich_uploader_asset(user, 'imageFile') | imagine_filter('user_avatar_normal') }}" alt="Avatar de {{ user.username }}" width="170" height="170">
