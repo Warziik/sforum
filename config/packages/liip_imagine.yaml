@@ -1,0 +1,8 @@
+# See dos how to configure the bundle: https://symfony.com/doc/current/bundles/LiipImagineBundle/basic-usage.html
+liip_imagine:
+    filter_sets:
+        user_avatar_normal:
+            quality: 75
+            filters:
+                thumbnail: { size: [170, 170], mode: outbound }
+                #background: { size: [124, 94], position: center, color: '#000000' }

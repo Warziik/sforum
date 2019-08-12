@@ -3,7 +3,14 @@
 {% block title %}{{ user.username }} - {{ parent() }}{% endblock %}
 
 {% block body %}
-    <h1>{{ user.username }}</h1>
-    <p><strong>Date d'inscription:</strong> {{ user.createdAt | date('Y-m-d H:i:s') }}</p>
-    <p><strong>Adresse email:</strong> {{ user.email }}</p>
+    <div class="row">
+        <div class="col-sm-2">
+            <img src="{{ vich_uploader_asset(user, 'imageFile') | imagine_filter('user_avatar_normal') }}" alt="Avatar de {{ user.username }}" width="170" height="170">
+        </div>
+        <div class="col-sm-10">
+            <h1>{{ user.username }}</h1>
+            <p><strong>Date d'inscription:</strong> {{ user.createdAt | date('Y-m-d H:i:s') }}</p>
+            <p><strong>Adresse email:</strong> {{ user.email }}</p>
+        </div>
+    </div>
 {% endblock %}

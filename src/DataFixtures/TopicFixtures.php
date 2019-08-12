@@ -31,7 +31,7 @@ class TopicFixtures extends Fixture implements DependentFixtureInterface
     public function load(ObjectManager $manager)
     {
         $faker = Factory::create();
-        for ($i = 0; $i <= 100; $i++) {
+        for ($i = 0; $i <= 342; $i++) {
             $subcategory = $this->getReference('subcategory-' . mt_rand(0, 23));
             $user = $this->getReference('user-' . mt_rand(0, 60));
             $topic = new Topic();

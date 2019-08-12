@@ -13,8 +13,8 @@ class TopicresponseFixtures extends Fixture implements DependentFixtureInterface
     public function load(ObjectManager $manager)
     {
         $faker = Factory::create();
-        for ($i = 0; $i <= 350; $i++) {
-            $topic = $this->getReference('topic-' . mt_rand(0, 100));
+        for ($i = 0; $i <= 450; $i++) {
+            $topic = $this->getReference('topic-' . mt_rand(0, 342));
             $user = $this->getReference('user-' . mt_rand(0, 60));
             $topicresponse = new TopicResponse();
             $topicresponse->setContent($faker->sentences(5, true));

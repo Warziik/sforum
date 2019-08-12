@@ -7,12 +7,14 @@ easy_admin:
       list:
         fields:
           - id
+          - { property: 'avatar', type: 'image', base_path: '%app.path.user_avatar%', label: 'Avatar' }
           - { property: 'username', label: "Nom d'utilisateur" }
           - { property: 'email', label: 'Adresse email' }
           - { property: 'roles', label: 'Rôle'}
           - { property: 'createdAt', label: "Date d'inscription"}
       form:
         fields:
+          - { property: 'imageFile', label: 'Avatar', type: 'file', type_options: { required: false }}
           - { property: 'username', label: "Nom d'utilisateur" }
           - { property: 'email', label: 'Adresse email' }
           - { property: 'password', label: 'Mot de passe' }
@@ -21,6 +23,7 @@ easy_admin:
         help: null
         fields:
           - id
+          - { property: 'avatar', type: 'image', base_path: '%app.path.user_avatar%', label: 'Avatar' }
           - { property: 'username', label: "Nom d'utilisateur" }
           - { property: 'email', label: 'Adresse email' }
           - { property: 'roles', label: 'Rôles', type: 'array' }
