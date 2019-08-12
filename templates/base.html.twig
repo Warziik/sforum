@@ -14,6 +14,9 @@
                     <div class="navbar-nav mr-auto">
                         <!--<a class="nav-item nav-link active" href="#">Accueil <span class="sr-only">(current)</span></a>-->
                         <a class="nav-item nav-link" href="{{ path('home') }}"><i class="fas fa-home"></i> Accueil</a>
+                        {% if is_granted('ROLE_ADMIN')  %}
+                            <a href="{{ path('easyadmin') }}" class="nav-item nav-link"><i class="fas fa-shield-alt"></i> Administration</a>
+                        {% endif %}
                     </div>
                     {% if app.user %}
                         <div class="navbar-nav">

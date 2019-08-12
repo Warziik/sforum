@@ -1,0 +1,13 @@
+easy_admin:
+  site_name: SForum
+  design:
+    brand_color: '#364d61'
+    menu:
+      - { label: 'Forum' }
+      - { entity: 'Category', icon: 'inbox' }
+      - { entity: 'Subcategory', icon: 'comment' }
+      - { entity: 'Topic', icon: 'comments' }
+
+      - { label: 'Utilisateurs' }
+      - { entity: 'User', icon: 'users' }
+      #- { entity: 'Role', icon: 'shield' }

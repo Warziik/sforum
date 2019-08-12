@@ -1,0 +1,21 @@
+easy_admin:
+  entities:
+    Subcategory:
+      class: App\Entity\Subcategory
+      label: Sous-catégories
+      help: Liste des sous-catégories du forum
+      list:
+        fields:
+          - id
+          - { property: 'name', label: 'Nom' }
+          - { property: 'category', label: 'Catégorie associée' }
+      form:
+        fields:
+          - { property: 'name', label: "Nom" }
+          - { property: 'category', label: 'Catégorie parente' }
+      new:
+        title: 'Nouvelle sous-catégorie'
+        help: null
+      edit:
+        title: 'Éditer une sous-catégorie'
+        help: null

@@ -1,0 +1,26 @@
+easy_admin:
+  entities:
+    Topic:
+      class: App\Entity\Topic
+      label: Sujets
+      help: Liste des sujets du forum
+      list:
+        fields:
+          - id
+          - { property: 'title', label: 'Titre' }
+          - { property: 'author', label: 'Auteur' }
+          - { property: 'createdAt', label: 'Date de création' }
+          - { property: 'updatedAt', label: 'Date de mise à jour' }
+          - { property: 'subcategory', label: 'Sous-catégorie associée' }
+      form:
+        fields:
+          - { property: 'title', label: 'Titre' }
+          - { property: 'content', type: 'text_editor', label: 'Contenu' }
+          - { property: 'author', label: 'Auteur' }
+          - { property: 'subcategory', label: 'Sous-catégorie parente' }
+      new:
+        title: 'Nouveau sujet'
+        help: null
+      edit:
+        title: 'Éditer un sujet'
+        help: null

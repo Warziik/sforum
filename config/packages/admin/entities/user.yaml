@@ -1,0 +1,35 @@
+easy_admin:
+  entities:
+    User:
+      class: App\Entity\User
+      label: Membres
+      help: Liste des membres du forum
+      list:
+        fields:
+          - id
+          - { property: 'username', label: "Nom d'utilisateur" }
+          - { property: 'email', label: 'Adresse email' }
+          - { property: 'roles', label: 'Rôle'}
+          - { property: 'createdAt', label: "Date d'inscription"}
+      form:
+        fields:
+          - { property: 'username', label: "Nom d'utilisateur" }
+          - { property: 'email', label: 'Adresse email' }
+          - { property: 'password', label: 'Mot de passe' }
+          - { property: 'roles', label: 'Rôles', type: 'collection', help: 'Les rôles disponibles sont pour le moment dans le fichier security.yaml' }
+      show:
+        help: null
+        fields:
+          - id
+          - { property: 'username', label: "Nom d'utilisateur" }
+          - { property: 'email', label: 'Adresse email' }
+          - { property: 'roles', label: 'Rôles', type: 'array' }
+          - { property: 'createdAt', label: "Date d'inscription" }
+          - { property: 'topics', label: 'Sujets crées' }
+          - { property: 'roles', label: 'Rôles', type: 'collection' }
+      new:
+        title: 'Nouveau membre'
+        help: null
+      edit:
+        title: 'Éditer un membre'
+        help: null
