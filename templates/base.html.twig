@@ -30,7 +30,7 @@
                                     &nbsp;{{ app.user.username }}
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ path('user.profile', {id: app.user.id}) }}"><i class="fas fa-user"></i> Mon compte</a>
+                                    <a class="dropdown-item" href="{{ path('user.profile', {slug: app.user.slug, id: app.user.id}) }}"><i class="fas fa-user"></i> Mon compte</a>
                                     <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" href="{{ path('security.logout') }}"><i class="fas fa-sign-out-alt"></i> Déconnexion</a>
                                 </div>

@@ -10,6 +10,7 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
@@ -72,6 +73,13 @@ class User implements UserInterface
      * @Vich\UploadableField(mapping="user_avatar", fileNameProperty="avatar")
      */
     private $imageFile;
+
+    /**
+     * @var string
+     * @ORM\Column(type="string", length=255)
+     * @Gedmo\Slug(fields={"username"})
+     */
+    private $slug;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Topic", mappedBy="author", orphanRemoval=true)
@@ -373,5 +381,23 @@ class User implements UserInterface
         $this->confirmed = $confirmed;
 
         return $this;
+    }
+
+    /**
+     * @param string $slug
+     * @return User
+     */
+    public function setSlug(string $slug): User
+    {
+        $this->slug = $slug;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSlug(): string
+    {
+        return $this->slug;
     }
 }

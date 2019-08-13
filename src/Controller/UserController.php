@@ -1,20 +1,18 @@
 <?php
 namespace App\Controller;
 
-use App\Repository\UserRepository;
+use App\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 
 class UserController extends AbstractController {
     /**
-     * @Route("/profil/{id}", name="user.profile", requirements={"id"="\d+"}, methods={"GET"})
+     * @Route("/membres/{slug}.{id}", name="user.profile", requirements={"slug"="^[a-zA-Z0-9-_]+$", "id"="\d+"}, methods={"GET"})
      *
-     * @param int $id
-     * @param UserRepository $repository
+     * @param User $user
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function index(int $id, UserRepository $repository) {
-        $user = $repository->find($id);
+    public function profile(User $user) {
         if (is_null($user)) {
             return $this->redirectToRoute('home');
         }

@@ -2,11 +2,11 @@
 
 namespace App\Entity;
 
-use Cocur\Slugify\Slugify;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\SubcategoryRepository")
@@ -22,7 +22,7 @@ class Subcategory
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, unique=true)
      * @Assert\NotBlank()
      * @Assert\Length(min=3, max=50)
      */
@@ -33,6 +33,13 @@ class Subcategory
      * @ORM\JoinColumn(nullable=false)
      */
     private $category;
+
+    /**
+     * @var string
+     * @ORM\Column(type="string", length=255)
+     * @Gedmo\Slug(fields={"name"})
+     */
+    private $slug;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Topic", mappedBy="subcategory", orphanRemoval=true)
@@ -52,12 +59,6 @@ class Subcategory
     public function getName(): ?string
     {
         return $this->name;
-    }
-
-    public function getSlug(): ?string
-    {
-        $slug = new Slugify();
-        return $slug->slugify($this->getName());
     }
 
     public function setName(string $name): self
@@ -113,5 +114,23 @@ class Subcategory
     public function __toString()
     {
         return $this->getName();
+    }
+
+    /**
+     * @param string $slug
+     * @return Subcategory
+     */
+    public function setSlug(string $slug): Subcategory
+    {
+        $this->slug = $slug;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSlug(): string
+    {
+        return $this->slug;
     }
 }

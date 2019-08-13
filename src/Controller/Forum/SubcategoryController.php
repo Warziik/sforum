@@ -1,6 +1,7 @@
 <?php
 namespace App\Controller\Forum;
 
+use App\Entity\Subcategory;
 use App\Repository\SubcategoryRepository;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -19,19 +20,13 @@ class SubcategoryController extends AbstractController {
     }
 
     /**
-     * @Route("/{slug}-{id}", name="forum.subcategory", methods={"GET"}, requirements={"slug"="^[a-zA-Z0-9-_]+$", "id"="\d+"})
-     * @param string $slug
-     * @param int $id
+     * @Route("/{slug}.{id}", name="forum.subcategory", methods={"GET"}, requirements={"slug"="^[a-zA-Z0-9-_]+$"})
+     * @param Subcategory $subcategory
      * @param Request $request
      * @param PaginatorInterface $paginator
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function show(string $slug, int $id, Request $request, PaginatorInterface $paginator) {
-        $subcategory = $this->subcategoryRepository->find($id);
-        if (is_null($subcategory) || $slug != $subcategory->getSlug()) {
-            return $this->redirectToRoute('home');
-        }
-
+    public function show(Subcategory $subcategory, Request $request, PaginatorInterface $paginator) {
         $pagination = $paginator->paginate(
             $subcategory->getTopics(),
             $request->query->getInt('page', 1),

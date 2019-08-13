@@ -2,11 +2,11 @@
 
 namespace App\Entity;
 
-use Cocur\Slugify\Slugify;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\TopicRepository")
@@ -59,6 +59,13 @@ class Topic
     private $subcategory;
 
     /**
+     * @var string
+     * @ORM\Column(type="string", length=255)
+     * @Gedmo\Slug(fields={"title"})
+     */
+    private $slug;
+
+    /**
      * @ORM\OneToMany(targetEntity="App\Entity\TopicResponse", mappedBy="topic", orphanRemoval=true)
      */
     private $responses;
@@ -77,12 +84,6 @@ class Topic
     public function getTitle(): ?string
     {
         return $this->title;
-    }
-
-    public function getSlug(): ?string
-    {
-        $slug = new Slugify();
-        return $slug->slugify($this->getTitle());
     }
 
     public function setTitle(string $title): self
@@ -186,5 +187,23 @@ class Topic
     public function __toString()
     {
         return $this->getTitle();
+    }
+
+    /**
+     * @param string $slug
+     * @return Topic
+     */
+    public function setSlug(string $slug): Topic
+    {
+        $this->slug = $slug;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSlug(): string
+    {
+        return $this->slug;
     }
 }
