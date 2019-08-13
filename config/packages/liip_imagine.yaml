@@ -1,7 +1,15 @@
 # See dos how to configure the bundle: https://symfony.com/doc/current/bundles/LiipImagineBundle/basic-usage.html
 liip_imagine:
     filter_sets:
+        user_avatar_small:
+            quality: 75
+            filters:
+                thumbnail: { size: [25, 25], mode: outbound }
         user_avatar_normal:
+            quality: 75
+            filters:
+                thumbnail: { size: [70, 70], mode: outbound }
+        user_avatar_medium:
             quality: 75
             filters:
                 thumbnail: { size: [170, 170], mode: outbound }

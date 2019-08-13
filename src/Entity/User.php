@@ -62,7 +62,7 @@ class User implements UserInterface
 
     /**
      * @var string|null
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $avatar;
 
@@ -107,7 +107,6 @@ class User implements UserInterface
     {
         $this->roles = ['ROLE_USER'];
         $this->createdAt = new \DateTime();
-        $this->avatar = 'default.png';
         $this->confirmed = false;
         $this->topics = new ArrayCollection();
         $this->topicResponses = new ArrayCollection();

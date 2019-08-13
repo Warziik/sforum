@@ -22,15 +22,37 @@
         <hr>
     {% endif %}
     <div class="pt-3 pl-3 pr-3">
-        <p>{{ topic.createdAt | date('Y-m-d H:i:s') }} - <a href="{{ path('user.profile', {id: topic.author.id}) }}">{{ topic.author.username }}</a></p>
-        <p>{{ topic.content }}</p>
+        <div class="row">
+            <div class="col-sm-1">
+                {% if topic.author.avatar %}
+                    <img src="{{ vich_uploader_asset(topic.author, 'imageFile') | imagine_filter('user_avatar_normal') }}" alt="Avatar de {{ topic.author.username }}">
+                {% else %}
+                    <img src="{{ '/images/users/default.png' | imagine_filter('user_avatar_normal') }}" alt="Avatar de {{ topic.author.username }}">
+                {% endif %}
+            </div>
+            <div class="col-sm-11">
+                <p>{{ topic.createdAt | date('Y-m-d H:i:s') }} - <a href="{{ path('user.profile', {id: topic.author.id}) }}">{{ topic.author.username }}</a></p>
+                <p>{{ topic.content }}</p>
+            </div>
+        </div>
     </div>
     {% for response in topic.responses %}
         <br>
         <div class="text-light bg-dark">
             <div class="pt-3 pl-3 pr-3 pb-3">
-                <p>{{ response.createdAt | date('Y-m-d H:i:s') }} - <a class="text-light" href="{{ path('user.profile', {id: response.author.id}) }}"><strong>{{ response.author.username }}</strong></a></p>
-                <p>{{ response.content }}</p>
+                <div class="row">
+                    <div class="col-sm-1">
+                        {% if response.author.avatar %}
+                            <img src="{{ vich_uploader_asset(response.author, 'imageFile') | imagine_filter('user_avatar_normal') }}" alt="Avatar de {{ response.author.username }}">
+                        {% else %}
+                            <img src="{{ '/images/users/default.png' | imagine_filter('user_avatar_normal') }}" alt="Avatar de {{ response.author.username }}">
+                        {% endif %}
+                    </div>
+                    <div class="col-sm-11">
+                        <p>{{ response.createdAt | date('Y-m-d H:i:s') }} - <a class="text-light" href="{{ path('user.profile', {id: response.author.id}) }}"><strong>{{ response.author.username }}</strong></a></p>
+                        <p>{{ response.content }}</p>
+                    </div>
+                </div>
             </div>
         </div>
     {% endfor %}
