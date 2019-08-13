@@ -73,17 +73,22 @@ class SecurityController extends AbstractController {
 
     /**
      * @IsGranted("IS_AUTHENTICATED_ANONYMOUSLY")
-     * @Route("/profil/{id}/confirmation/{token}", name="security.accountConfirmation", requirements={"id"="\d+", "token"="\w+"})
+     * @Route("/membres/{slug}.{id}/confirmation/{token}", name="security.accountConfirmation", requirements={"slug"="^[a-zA-Z0-9-_]+$", "id"="\d+", "token"="\w+"})
      * @param Request $request
+     * @param string $slug
      * @param int $id
      * @param string $token
      * @param LoginFormAuthenticator $authenticator
      * @param GuardAuthenticatorHandler $authenticatorHandler
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
-    public function accountConfirmation(Request $request, int $id, string $token, LoginFormAuthenticator $authenticator, GuardAuthenticatorHandler $authenticatorHandler) {
-        $user = $this->userRepository->find($id);
-        if ($user && $user->getAccountConfirmationToken() === $token) {
+    public function accountConfirmation(Request $request, string $slug, int $id, string $token, LoginFormAuthenticator $authenticator, GuardAuthenticatorHandler $authenticatorHandler) {
+        $user = $this->userRepository->findOneBy([
+            'id' => $id,
+            'slug' => $slug,
+            'accountConfirmationToken' => $token
+        ]);
+        if ($user) {
             $user->setAccountConfirmationToken(null);
             $user->setConfirmed(true);
 
@@ -97,9 +102,8 @@ class SecurityController extends AbstractController {
             );
 
             $this->addFlash('success', 'Votre compte a bien été confirmé.');
-            return $this->redirectToRoute('user.profile', ['id' => $user->getId()]);
+            return $this->redirectToRoute('user.profile', ['slug' => $user->getSlug(), 'id' => $user->getId()]);
         }
-        $this->addFlash('danger', 'Token invalide.');
         return $this->redirectToRoute('home');
     }
 
@@ -184,7 +188,7 @@ class SecurityController extends AbstractController {
             );
 
             $this->addFlash('success', 'Votre mot de passe a bien été modifié.');
-            return $this->redirectToRoute('user.profile', ['id' => $user->getId()]);
+            return $this->redirectToRoute('user.profile', ['slug' => $user->getSlug(), 'id' => $user->getId()]);
         }
         return $this->render('security/resetPassword.html.twig', ['form' => $form->createView()]);
     }
