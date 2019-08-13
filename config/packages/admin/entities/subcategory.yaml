@@ -13,6 +13,12 @@ easy_admin:
         fields:
           - { property: 'name', label: "Nom" }
           - { property: 'category', label: 'Catégorie parente' }
+      show:
+        help: null
+        fields:
+          - id
+          - { property: 'name', label: "Nom" }
+          - { property: 'category', label: 'Catégorie parente' }
       new:
         title: 'Nouvelle sous-catégorie'
         help: null

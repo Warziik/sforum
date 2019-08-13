@@ -18,8 +18,6 @@ easy_admin:
           - { property: 'imageFile', label: 'Avatar', type: 'file', type_options: { required: false }}
           - { property: 'username', label: "Nom d'utilisateur" }
           - { property: 'email', label: 'Adresse email' }
-          - { property: 'password', label: 'Mot de passe' }
-          - { property: 'roles', label: 'Rôles', type: 'collection', help: 'Les rôles disponibles sont pour le moment dans le fichier security.yaml' }
       show:
         help: null
         fields:
@@ -30,10 +28,15 @@ easy_admin:
           - { property: 'roles', label: 'Rôles', type: 'array' }
           - { property: 'createdAt', label: "Date d'inscription" }
           - { property: 'topics', label: 'Sujets crées' }
-          - { property: 'roles', label: 'Rôles', type: 'collection' }
       new:
         title: 'Nouveau membre'
         help: null
+        fields:
+          - { property: 'password', type: 'password', label: 'Mot de passe' }
+          - { property: 'roles', label: 'Rôles', type: 'collection', help: 'Les rôles disponibles sont pour le moment dans le fichier security.yaml' }
       edit:
         title: 'Éditer un membre'
         help: null
+        fields:
+          - { property: 'password', type: 'password', label: 'Mot de passe' }
+          - { property: 'roles', label: 'Rôles', type: 'collection', help: 'Les rôles disponibles sont pour le moment dans le fichier security.yaml' }

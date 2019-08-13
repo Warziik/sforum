@@ -11,6 +11,12 @@ easy_admin:
       form:
         fields:
           - { property: 'name', label: 'Nom' }
+      show:
+        help: null
+        fields:
+          - id
+          - { property: 'name', label: 'Nom' }
+          - { property: 'subcategories', label: 'Sous-catégories' }
       new:
         title: 'Nouvelle catégorie'
         help: null
