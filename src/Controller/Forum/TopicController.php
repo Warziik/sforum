@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Controller\Forum;
 
 use App\Entity\Topic;
@@ -12,7 +13,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
-class TopicController extends AbstractController {
+class TopicController extends AbstractController
+{
     /**
      * @var TopicRepository
      */
@@ -36,7 +38,8 @@ class TopicController extends AbstractController {
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
-    public function new(Request $request) {
+    public function new(Request $request)
+    {
         $topic = new Topic();
         $topic->setAuthor($this->getUser());
 
@@ -59,7 +62,8 @@ class TopicController extends AbstractController {
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function show(Topic $topic,  Request $request) {
+    public function show(Topic $topic,  Request $request)
+    {
         $topicResponse = new TopicResponse();
         $topicResponse->setAuthor($this->getUser());
         $topicResponse->setTopic($topic);
@@ -72,7 +76,7 @@ class TopicController extends AbstractController {
             $this->addFlash('success', 'Votre réponse a bien été postée.');
             return $this->redirectToRoute('forum.topic_show', ['slug' => $topic->getSlug(), 'id' => $topic->getId()]);
         }
-        
+
         return $this->render('forum/topic/show.html.twig', ['topic' => $topic, 'form' => $form->createView()]);
     }
 
@@ -85,7 +89,8 @@ class TopicController extends AbstractController {
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      * @throws \Exception
      */
-    public function edit(Request $request, Topic $topic) {
+    public function edit(Request $request, Topic $topic)
+    {
         if ($this->getUser()->getId() != $topic->getAuthor()->getId()) {
             return $this->redirectToRoute('home');
         }
@@ -110,7 +115,8 @@ class TopicController extends AbstractController {
      * @param Topic $topic
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
-    public function delete(Request $request, Topic $topic) {
+    public function delete(Request $request, Topic $topic)
+    {
         if (
             $this->getUser()->getId() != $topic->getAuthor()->getId() ||
             !$this->isCsrfTokenValid('delete-topic-' . $topic->getId(), $request->get('_token'))
