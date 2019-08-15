@@ -11,11 +11,14 @@ use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
  * @ORM\Table(name="users")
  * @Vich\Uploadable()
+ * @UniqueEntity(fields={"username"}, message="Ce nom d'utilisateur est déjà utilisé.")
+ * @UniqueEntity(fields={"email"}, message="Cette adresse email est déjà utilisée.")
  */
 class User implements UserInterface
 {

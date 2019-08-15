@@ -7,10 +7,12 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\SubcategoryRepository")
  * @ORM\Table(name="forum_subcategories")
+ * @UniqueEntity(fields={"name"}, message="Une sous-catégorie existe déjà avec ce nom.")
  */
 class Subcategory
 {
