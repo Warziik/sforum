@@ -11,19 +11,19 @@
             <div align="center" class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
         {% endif %}
         <div class="form-group">
-            <input type="text" value="{{ last_username }}" name="username" class="form-control" placeholder="Nom d'utilisateur ou adresse email" required autofocus>
+            <input type="text" value="{{ last_username }}" name="username" class="form-control form-control-rounded" placeholder="Nom d'utilisateur ou adresse email" required autofocus>
         </div>
         <div class="form-group">
-            <input type="password" name="password" class="form-control" placeholder="Mot de passe" required>
+            <input type="password" name="password" class="form-control form-control-rounded" placeholder="Mot de passe" required>
         </div>
         <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
-        <div class="checkbox mb-3">
+        <div align="center" class="checkbox mb-1">
             <label>
                 <input type="checkbox" name="_remember_me"> Se souvenir de moi
             </label>
             -
             <a href="{{ path('security.forgotPassword') }}">Mot de passe oublié ?</a>
         </div>
-        <button class="btn btn-secondary btn-block" type="submit"><i class="fas fa-sign-in-alt"></i> Se connecter</button>
+        <p align="center"><button class="btn btn-success btn-rounded pl-5 pr-5" type="submit"><i class="fas fa-sign-in-alt"></i> Se connecter</button></p>
     </form>
 {% endblock %}

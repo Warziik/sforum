@@ -13,8 +13,13 @@ class TopicResponseType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('content', TextareaType::class, ['attr' => ['placeholder' => 'Écrivez votre réponse...'], 'label' => false])
-        ;
+            ->add('content', TextareaType::class, [
+                'attr' => [
+                    'placeholder' => 'Écrivez votre réponse...',
+                    'rows' => '4'
+                ],
+                'label' => false
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver)

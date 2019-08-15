@@ -43,21 +43,26 @@
                 <div class="row">
                     <div class="col-sm-1">
                         {% if response.author.avatar %}
-                            <img src="{{ vich_uploader_asset(response.author, 'imageFile') | imagine_filter('user_avatar_normal') }}" alt="Avatar de {{ response.author.username }}">
+                            <img class="rounded border border-primary" src="{{ vich_uploader_asset(response.author, 'imageFile') | imagine_filter('user_avatar_normal') }}" alt="Avatar de {{ response.author.username }}">
                         {% else %}
-                            <img src="{{ '/images/users/default.png' | imagine_filter('user_avatar_normal') }}" alt="Avatar de {{ response.author.username }}">
+                            <img class="rounded border border-primary" src="{{ '/images/users/default.png' | imagine_filter('user_avatar_normal') }}" alt="Avatar de {{ response.author.username }}">
                         {% endif %}
                     </div>
                     <div class="col-sm-11">
-                        <p>{{ response.createdAt | date('Y-m-d H:i:s') }} - <a class="text-light" href="{{ path('user.profile', {slug: response.author.slug, id: response.author.id}) }}"><strong>{{ response.author.username }}</strong></a></p>
-                        {% if is_granted('IS_AUTHENTICATED_FULLY') and app.user.id is same as(response.author.id) %}
-                            <a href="#" class="btn btn-light btn-sm js-responseEditButton"><i class="fas fa-pencil-alt"></i> Éditer</a>
-                            <form style="display: inline-block;" action="{{ path('forum.topicresponse_delete', {id: response.id}) }}" method="POST" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer votre réponse ? (action irréversible)')">
-                                <input type="hidden" name="_method" value="DELETE">
-                                <input type="hidden" name="_token" value="{{ csrf_token('delete-topicresponse-' ~ response.id) }}">
-                                <button class="btn btn-danger btn-sm"><i class="fas fa-trash-alt"></i> Supprimer</button>
-                            </form>
-                        {% endif %}
+                        <div class="d-flex justify-content-between">
+                            <p>{{ response.createdAt | date('Y-m-d H:i:s') }} - <a class="text-light" href="{{ path('user.profile', {slug: response.author.slug, id: response.author.id}) }}"><strong>{{ response.author.username }}</strong></a></p>
+                            {% if is_granted('IS_AUTHENTICATED_FULLY') and app.user.id is same as(response.author.id) %}
+                                <div>
+                                    <a href="#" class="btn btn-light btn-sm js-responseEditButton"><i class="fas fa-pencil-alt"></i> Éditer</a>
+                                    &nbsp;
+                                    <form style="display: inline-block;" action="{{ path('forum.topicresponse_delete', {id: response.id}) }}" method="POST" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer votre réponse ? (action irréversible)')">
+                                        <input type="hidden" name="_method" value="DELETE">
+                                        <input type="hidden" name="_token" value="{{ csrf_token('delete-topicresponse-' ~ response.id) }}">
+                                        <button class="btn btn-primary btn-sm"><i class="fas fa-trash-alt"></i> Supprimer</button>
+                                    </form>
+                                </div>
+                            {% endif %}
+                        </div>
                         <p class="responseContent">{{ response.content }}</p>
                     </div>
                 </div>
@@ -71,7 +76,7 @@
                         <label for="content">Votre réponse</label>
                         <textarea name="content" id="content" class="form-control">{{ response.content }}</textarea>
                     </div>
-                    <button type="submit" class="btn btn-primary"><i class="fas fa-check"></i> Sauvegarder</button>
+                    <button type="submit" class="btn btn-info"><i class="fas fa-check"></i> Sauvegarder</button>
                     <button class="btn btn-light js-cancelEditResponseAction"><i class="fas fa-times"></i> Annuler</button>
                 </form>
             </div>
@@ -81,11 +86,11 @@
         <hr>
         {{ form_start(form) }}
             {{ form_widget(form) }}
-            <button class="btn btn-secondary btn-block btn-sm"><i class="fas fa-reply"></i> Répondre</button>
+            <p align="center"><button class="btn btn-success"><i class="fas fa-reply"></i> Répondre</button></p>
         {{ form_end(form) }}
     {% else %}
         <hr>
-        <p align="center">Vous devez vous <a href="{{ path('security.login') }}">connecter</a> pour répondre à ce sujet.</p>
+        <p align="center">Vous devez être <a href="{{ path('security.login') }}">connecté</a> pour répondre à ce sujet.</p>
     {% endif %}
 {% endblock %}
 

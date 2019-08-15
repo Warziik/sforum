@@ -17,13 +17,14 @@ class TopicType extends AbstractType
     {
         $builder
             ->add('title', TextType::class, ['label' => 'Titre du sujet'])
-            ->add('content', TextareaType::class, ['label' => 'Contenu'])
+            ->add('content', TextareaType::class, ['label' => 'Contenu', 'attr' => [
+                'rows' => '10'
+            ]])
             ->add('subcategory', EntityType::class, [
                 'class' => Subcategory::class,
                 'choice_label' => 'name',
-                'label' => 'Sous-catégorie parente'
-            ])
-        ;
+                'label' => 'Sous-catégorie associée'
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver)

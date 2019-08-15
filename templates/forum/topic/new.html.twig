@@ -5,7 +5,15 @@
 {% block body %}
     <h1>Nouveau sujet</h1>
     {{ form_start(form) }}
-        {{ form_widget(form) }}
-        <button class="btn btn-secondary"><i class="fas fa-plus"></i> Créer</button>
+        <div class="form-row">
+            <div class="col-sm-6">
+                {{ form_row(form.title) }}
+            </div>
+            <div class="col-sm-6">
+                {{ form_row(form.subcategory) }}
+            </div>
+        </div>
+        {{ form_row(form.content) }}
+        <p align="center"><button class="btn btn-outline-success pl-4 pr-4"><i class="fas fa-plus"></i> Créer</button></p>
     {{ form_end(form) }}
 {% endblock %}

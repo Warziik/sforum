@@ -39,6 +39,8 @@
             {% endfor %}
             </tbody>
         </table>
-        {{ knp_pagination_render(pagination) }}
+        <div class="d-flex justify-content-center">
+            {{ knp_pagination_render(pagination) }}
+        </div>
     {% endif %}
 {% endblock %}

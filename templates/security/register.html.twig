@@ -3,9 +3,11 @@
 {% block title %}S'inscrire - {{ parent() }}{% endblock %}
 
 {% block body %}
-    <h1>S'inscrire</h1>
-    {{ form_start(form) }}
-        {{ form_widget(form) }}
-        <button class="btn btn-secondary"><i class="fas fa-unlock"></i> S'inscrire</button>
-    {{ form_end(form) }}
+    <div style="width:600px;" class="ml-auto mr-auto">
+        <h1>S'inscrire</h1>
+        {{ form_start(form) }}
+            {{ form_widget(form) }}
+            <p align="center"><button class="btn btn-success pl-5 pr-5"><i class="fas fa-unlock"></i> &nbsp;S'inscrire</button></p>
+        {{ form_end(form) }}
+    </div>
 {% endblock %}

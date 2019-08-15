@@ -4,7 +4,7 @@ document.querySelectorAll('.js-responseEditButton').forEach(response => {
     response.addEventListener('click', e => {
         e.preventDefault();
 
-        let parent = response.parentElement.parentElement.parentElement.parentElement;
+        let parent = response.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement;
         parent.style.display = 'none';
         let editDiv = parent.nextElementSibling;
         editDiv.classList.remove('hidden');

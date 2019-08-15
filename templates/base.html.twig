@@ -3,12 +3,11 @@
     <head>
         <meta charset="UTF-8">
         <title>{% block title %}SForum{% endblock %}</title>
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         {{ encore_entry_link_tags('app') }}
         {% block stylesheets %}{% endblock %}
     </head>
     <body>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
             <div class="container">
                 <a class="navbar-brand" href="{{ path('home') }}">SForum</a>
                 <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
@@ -24,9 +23,9 @@
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     {% if app.user.avatar %}
-                                        <img src="{{ vich_uploader_asset(app.user, 'imageFile') | imagine_filter('user_avatar_small') }}" alt="Avatar de {{ app.user.username }}">
+                                        <img class="rounded border border-secondary" src="{{ vich_uploader_asset(app.user, 'imageFile') | imagine_filter('user_avatar_small') }}" alt="Avatar de {{ app.user.username }}">
                                     {% else %}
-                                        <img src="{{ '/images/users/default.png' | imagine_filter('user_avatar_small') }}" alt="Avatar de {{ app.user.username }}">
+                                        <img class="rounded border border-secondary" src="{{ '/images/users/default.png' | imagine_filter('user_avatar_small') }}" alt="Avatar de {{ app.user.username }}">
                                     {% endif %}
                                     &nbsp;{{ app.user.username }}
                                 </a>
