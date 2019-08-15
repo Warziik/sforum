@@ -9,5 +9,12 @@
 require('../css/flatly_bootstrap.min.css');
 require('../css/app.scss');
 
+const moment = require('moment');
+moment.locale('fr');
+
+document.querySelectorAll('time').forEach(time => {
+    time.textContent = moment(time.getAttribute('data-datetime')).fromNow();
+})
+
 // Need jQuery? Install it with "yarn add jquery", then uncomment to require it.
 // const $ = require('jquery');

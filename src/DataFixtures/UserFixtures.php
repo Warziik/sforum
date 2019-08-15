@@ -30,7 +30,8 @@ class UserFixtures extends Fixture
                 ->setEmail($faker->email)
                 ->setRoles(['ROLE_ADMIN'])
                 ->setConfirmed(true)
-                ->setPassword($this->passwordEncoder->encodePassword($user, 'demo1234'));
+                ->setPassword($this->passwordEncoder->encodePassword($user, 'demo1234'))
+                ->setCreatedAt($faker->dateTimeThisDecade);
 
             $manager->persist($user);
             $this->addReference('user-' . $i, $user);

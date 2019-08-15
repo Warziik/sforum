@@ -31,7 +31,7 @@
                 {% endif %}
             </div>
             <div class="col-sm-11">
-                <p>{{ topic.createdAt | date('Y-m-d H:i:s') }} - <a href="{{ path('user.profile', {slug: topic.author.slug, id: topic.author.id}) }}">{{ topic.author.username }}</a></p>
+                <p><time data-datetime="{{ topic.createdAt | date('Y-m-d H:i:s') }}">{{ topic.createdAt | date('Y-m-d H:i:s') }}</time>- <a href="{{ path('user.profile', {slug: topic.author.slug, id: topic.author.id}) }}">{{ topic.author.username }}</a></p>
                 <p>{{ topic.content }}</p>
             </div>
         </div>
@@ -50,7 +50,7 @@
                     </div>
                     <div class="col-sm-11">
                         <div class="d-flex justify-content-between">
-                            <p>{{ response.createdAt | date('Y-m-d H:i:s') }} - <a class="text-light" href="{{ path('user.profile', {slug: response.author.slug, id: response.author.id}) }}"><strong>{{ response.author.username }}</strong></a></p>
+                            <p><time data-datetime="{{ response.createdAt | date('Y-m-d H:i:s') }}">{{ response.createdAt | date('Y-m-d H:i:s') }}</time> - <a class="text-light" href="{{ path('user.profile', {slug: response.author.slug, id: response.author.id}) }}"><strong>{{ response.author.username }}</strong></a></p>
                             {% if is_granted('IS_AUTHENTICATED_FULLY') and app.user.id is same as(response.author.id) %}
                                 <div>
                                     <a href="#" class="btn btn-light btn-sm js-responseEditButton"><i class="fas fa-pencil-alt"></i> Éditer</a>

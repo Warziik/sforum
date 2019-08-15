@@ -18,6 +18,7 @@ class TopicresponseFixtures extends Fixture implements DependentFixtureInterface
             $user = $this->getReference('user-' . mt_rand(0, 60));
             $topicresponse = new TopicResponse();
             $topicresponse->setContent($faker->sentences(5, true));
+            $topicresponse->setCreatedAt($faker->dateTimeThisDecade);
             $topicresponse->setTopic($topic);
             $topicresponse->setAuthor($user);
 

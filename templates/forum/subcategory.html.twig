@@ -28,12 +28,12 @@
                 <tr>
                     <td><a href="{{ path('forum.topic_show', {slug: topic.slug, id: topic.id}) }}">{{ topic.title }}</a></td>
                     <td><a href="{{ path('user.profile', {slug: topic.author.slug, id: topic.author.id}) }}">{{ topic.author.username }}</a></td>
-                    <td>{{ topic.responses | length }}</td>
-                    <td>{{ topic.createdAt | date('Y-m-d H:i:s') }}</td>
+                    <td><span class="badge badge-light badge-pill">{{ topic.responses | length }}</span></td>
+                    <td><time data-datetime="{{ topic.createdAt | date('Y-m-d H:i:s') }}">{{ topic.createdAt | date('Y-m-d H:i:s') }}</time></td>
                     {% if topic.updatedAt is null %}
-                        <td></td>
+                        <td><span class="badge badge-primary">Aucune</span></td>
                     {% else %}
-                        <td>{{ topic.updatedAt | date('Y-m-d H:i:s') }}</td>
+                        <td><time data-datetime="{{ topic.updatedAt | date('Y-m-d H:i:s') }}">{{ topic.updatedAt | date('Y-m-d H:i:s') }}</time></td>
                     {% endif %}
                 </tr>
             {% endfor %}

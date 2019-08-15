@@ -37,6 +37,7 @@ class TopicFixtures extends Fixture implements DependentFixtureInterface
             $topic = new Topic();
             $topic->setTitle($faker->sentence(6));
             $topic->setContent($faker->text);
+            $topic->setCreatedAt($faker->dateTimeThisDecade);
             $topic->setSubcategory($subcategory);
             $topic->setAuthor($user);
             $manager->persist($topic);
