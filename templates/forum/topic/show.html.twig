@@ -11,16 +11,20 @@
             <li class="breadcrumb-item active" aria-current="page">{{ topic.title }}</li>
         </ol>
     </nav>
-    <h1>{{ topic.title }}</h1>
-    {% if is_granted('IS_AUTHENTICATED_FULLY') and app.user.id is same as(topic.author.id) %}
-        <a class="btn btn-light btn-sm" href="{{ path('forum.topic_edit', {slug: topic.slug, id: topic.id}) }}"><i class="fas fa-pencil-alt"></i> Éditer</a>
-        <form style="display: inline-block;" action="{{ path('forum.topic_delete', {slug: topic.slug, id: topic.id}) }}" method="POST" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer ce sujet ? (action irréversible)')">
-            <input type="hidden" name="_method" value="DELETE">
-            <input type="hidden" name="_token" value="{{ csrf_token('delete-topic-' ~ topic.id) }}">
-            <button class="btn btn-danger btn-sm"><i class="fas fa-trash-alt"></i> Supprimer</button>
-        </form>
-        <hr>
-    {% endif %}
+    <div class="d-flex align-items-center">
+        <h1>{{ topic.title }}</h1>
+        {% if is_granted('IS_AUTHENTICATED_FULLY') and app.user.id is same as(topic.author.id) %}
+            <div class="ml-3">
+                <a class="btn btn-light btn-sm" href="{{ path('forum.topic_edit', {slug: topic.slug, id: topic.id}) }}"><i class="fas fa-pencil-alt"></i> Éditer</a>
+                &nbsp;
+                <form style="display: inline-block;" action="{{ path('forum.topic_delete', {slug: topic.slug, id: topic.id}) }}" method="POST" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer ce sujet ? (action irréversible)')">
+                    <input type="hidden" name="_method" value="DELETE">
+                    <input type="hidden" name="_token" value="{{ csrf_token('delete-topic-' ~ topic.id) }}">
+                    <button class="btn btn-danger btn-sm"><i class="fas fa-trash-alt"></i> Supprimer</button>
+                </form>
+            </div>
+        {% endif %}
+    </div>
     <div class="pt-3 pl-3 pr-3">
         <div class="row">
             <div class="col-sm-1">
@@ -86,7 +90,7 @@
         <hr>
         {{ form_start(form) }}
             {{ form_widget(form) }}
-            <p align="center"><button class="btn btn-success"><i class="fas fa-reply"></i> Répondre</button></p>
+            <p align="center"><button type="submit" class="btn btn-success"><i class="fas fa-reply"></i> Répondre</button></p>
         {{ form_end(form) }}
     {% else %}
         <hr>

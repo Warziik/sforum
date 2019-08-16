@@ -3,9 +3,21 @@
 {% block title %}{{ topic.title }} - {{ parent() }}{% endblock %}
 
 {% block body %}
-    <h1>Édition du sujet "{{ topic.title }}"</h1>
-    {{ form_start(form) }}
-        {{ form_widget(form) }}
-        <button class="btn btn-secondary">Sauvegarder</button>
-    {{ form_end(form) }}
+    <h1>Édition du sujet "<span id="js-liveTitle">{{ topic.title }}</span>"</h1>
+        {{ form_start(form) }}
+            <div class="form-row">
+                <div class="col-sm-6">
+                    {{ form_row(form.title) }}
+                </div>
+                <div class="col-sm-6">
+                    {{ form_row(form.subcategory) }}
+                </div>
+            </div>
+            {{ form_row(form.content) }}
+            <p align="center"><button type="submit" class="btn btn-success pl-4 pr-4"><i class="fas fa-check"></i> Sauvegarder</button></p>
+        {{ form_end(form) }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ encore_entry_script_tags('topic_edit') }}
 {% endblock %}

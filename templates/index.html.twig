@@ -16,12 +16,17 @@
             <thead>
                 <tr>
                     <th>{{ category.name }}</th>
+                    <th>Sujets</th>
+                    <th>Dernier sujet</th>
                 </tr>
             </thead>
             <tbody>
                 {% for subcategory in category.subcategories %}
                     <tr>
                         <td><a href="{{ path('forum.subcategory', {slug: subcategory.slug, id: subcategory.id}) }}">{{ subcategory.name }}</a></td>
+                        <td>{{ subcategory.topics | length }}</td>
+                        {% set lastTopic = subcategory.topics | last %}
+                        <td><a href="{{ path('forum.topic_show', {slug: lastTopic.slug, id: lastTopic.id}) }}">{{ lastTopic.title }}</a> par <a href="{{ path('user.profile', {slug: lastTopic.author.slug, id: lastTopic.author.id}) }}">{{ lastTopic.author.username }}</a>, <time data-datetime="{{ lastTopic.createdAt | date('Y-m-d h:i:s') }}">{{ lastTopic.createdAt | date('Y-m-d h:i:s') }}</time></td>
                     </tr>
                 {% else %}
                     <tr>
