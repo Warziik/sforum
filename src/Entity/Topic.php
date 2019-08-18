@@ -36,14 +36,14 @@ class Topic
     private $content;
 
     /**
-     * @ORM\Column(type="datetime", name="created_at")
-     * @Assert\Type("\DateTime")
+     * @ORM\Column(type="datetime")
+     * @Gedmo\Timestampable(on="create")
      */
     private $createdAt;
 
     /**
-     * @ORM\Column(type="datetime", name="updated_at", nullable=true)
-     * @Assert\Type("\DateTime")
+     * @ORM\Column(type="datetime")
+     * @Gedmo\Timestampable(on="update")
      */
     private $updatedAt;
 
@@ -72,7 +72,6 @@ class Topic
 
     public function __construct()
     {
-        $this->createdAt = new \DateTime();
         $this->responses = new ArrayCollection();
     }
 

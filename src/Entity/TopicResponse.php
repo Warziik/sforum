@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\TopicResponseRepository")
@@ -26,12 +27,14 @@ class TopicResponse
     private $content;
 
     /**
-     * @ORM\Column(type="datetime", name="created_at")
+     * @ORM\Column(type="datetime")
+     * @Gedmo\Timestampable(on="create")
      */
     private $createdAt;
 
     /**
-     * @ORM\Column(type="datetime", nullable=true, name="updated_at")
+     * @ORM\Column(type="datetime")
+     * @Gedmo\Timestampable(on="update")
      */
     private $updatedAt;
 
@@ -46,11 +49,6 @@ class TopicResponse
      * @ORM\JoinColumn(nullable=false)
      */
     private $topic;
-
-    public function __construct()
-    {
-        $this->createdAt = new \DateTime();
-    }
 
     public function getId(): ?int
     {
@@ -86,7 +84,7 @@ class TopicResponse
         return $this->updatedAt;
     }
 
-    public function setUpdatedAt(?\DateTimeInterface $updatedAt): self
+    public function setUpdatedAt(\DateTimeInterface $updatedAt): self
     {
         $this->updatedAt = $updatedAt;
 

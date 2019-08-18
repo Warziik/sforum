@@ -25,6 +25,7 @@
             </thead>
             <tbody>
             {% for topic in pagination %}
+                {% cache 'list_topics' ~ topic.id topic.updatedAt.timestamp %}
                 <tr>
                     <td><a href="{{ path('forum.topic_show', {slug: topic.slug, id: topic.id}) }}">{{ topic.title }}</a></td>
                     <td><a href="{{ path('user.profile', {slug: topic.author.slug, id: topic.author.id}) }}">{{ topic.author.username }}</a></td>
@@ -36,6 +37,7 @@
                         <td><time data-datetime="{{ topic.updatedAt | date('Y-m-d H:i:s') }}">{{ topic.updatedAt | date('Y-m-d H:i:s') }}</time></td>
                     {% endif %}
                 </tr>
+                {% endcache %}
             {% endfor %}
             </tbody>
         </table>

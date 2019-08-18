@@ -98,7 +98,6 @@ class TopicController extends AbstractController
         $form = $this->createForm(TopicType::class, $topic);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            $topic->setUpdatedAt(new \DateTime());
             $this->em->flush();
 
             $this->addFlash('success', 'Votre sujet a bien été modifié.');

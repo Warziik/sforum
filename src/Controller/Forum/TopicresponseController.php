@@ -48,7 +48,6 @@ class TopicresponseController extends AbstractController
 
         $content = $data['content'];
         $topicResponse->setContent($content);
-        $topicResponse->setUpdatedAt(new \DateTime());
 
         $errors = $validator->validate($topicResponse);
         if (count($errors) > 0) {

@@ -1,11 +1,13 @@
 <?php
+
 namespace App\Controller;
 
 use App\Repository\CategoryRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 
-class ForumController extends AbstractController {
+class ForumController extends AbstractController
+{
     /**
      * @var CategoryRepository
      */
@@ -20,7 +22,9 @@ class ForumController extends AbstractController {
      * @Route("/", name="home", methods={"GET"})
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function index() {
-        return $this->render('index.html.twig', ['categories' => $this->categoryRepository->findAll()]);
+    public function index()
+    {
+        $categories = $this->categoryRepository->findAll();
+        return $this->render('index.html.twig', ['categories' => $categories]);
     }
 }

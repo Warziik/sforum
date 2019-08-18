@@ -58,9 +58,8 @@ class User implements UserInterface
     private $password;
 
     /**
-     * @ORM\Column(type="datetime", name="created_at")
-     * @Assert\NotBlank()
-     * @Assert\Type("\DateTime")
+     * @ORM\Column(type="datetime")
+     * @Gedmo\Timestampable(on="create")
      */
     private $createdAt;
 
@@ -100,7 +99,8 @@ class User implements UserInterface
     private $topicResponses;
 
     /**
-     * @ORM\Column(type="datetime", nullable=true)
+     * @ORM\Column(type="datetime")
+     * @Gedmo\Timestampable(on="update")
      */
     private $updatedAt;
 
@@ -117,7 +117,6 @@ class User implements UserInterface
     public function __construct()
     {
         $this->roles = ['ROLE_USER'];
-        $this->createdAt = new \DateTime();
         $this->confirmed = false;
         $this->topics = new ArrayCollection();
         $this->topicResponses = new ArrayCollection();
@@ -355,7 +354,7 @@ class User implements UserInterface
         return $this->updatedAt;
     }
 
-    public function setUpdatedAt(?\DateTimeInterface $updatedAt): self
+    public function setUpdatedAt(\DateTimeInterface $updatedAt): self
     {
         $this->updatedAt = $updatedAt;
 
