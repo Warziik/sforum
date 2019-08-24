@@ -228,7 +228,7 @@
         "version": "v4.3.2"
     },
     "symfony/browser-kit": {
-        "version": "v4.3.2"
+        "version": "v4.3.3"
     },
     "symfony/cache": {
         "version": "v4.3.2"
@@ -253,7 +253,7 @@
         ]
     },
     "symfony/css-selector": {
-        "version": "v4.3.2"
+        "version": "v4.3.3"
     },
     "symfony/debug": {
         "version": "v4.3.2"
@@ -280,7 +280,7 @@
         "version": "v4.3.2"
     },
     "symfony/dom-crawler": {
-        "version": "v4.3.2"
+        "version": "v4.3.3"
     },
     "symfony/dotenv": {
         "version": "v4.3.2"

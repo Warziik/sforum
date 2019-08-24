@@ -82,7 +82,7 @@ class TopicController extends AbstractController
 
     /**
      * @IsGranted("ROLE_USER")
-     * @Route("/sujets/{slug}-{id}/edition", name="forum.topic_edit", requirements={"slug"="^[a-zA-Z0-9-_]+$", "id"="\d+"}, methods={"GET", "POST"})
+     * @Route("/sujets/{slug}-{id}/edit", name="forum.topic_edit", requirements={"slug"="^[a-zA-Z0-9-_]+$", "id"="\d+"}, methods={"GET", "POST"})
      *
      * @param Request $request
      * @param Topic $topic
