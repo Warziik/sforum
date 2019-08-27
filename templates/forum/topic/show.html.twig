@@ -62,7 +62,7 @@
                                     <form style="display: inline-block;" action="{{ path('forum.topicresponse_delete', {id: response.id}) }}" method="POST" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer votre réponse ? (action irréversible)')">
                                         <input type="hidden" name="_method" value="DELETE">
                                         <input type="hidden" name="_token" value="{{ csrf_token('delete-topicresponse-' ~ response.id) }}">
-                                        <button class="btn btn-primary btn-sm"><i class="fas fa-trash-alt"></i> Supprimer</button>
+                                        <button id="deleteTopicReplyButton" class="btn btn-primary btn-sm"><i class="fas fa-trash-alt"></i> Supprimer</button>
                                     </form>
                                 </div>
                             {% endif %}
@@ -90,7 +90,7 @@
         <hr>
         {{ form_start(form) }}
             {{ form_widget(form) }}
-            <p align="center"><button type="submit" class="btn btn-success"><i class="fas fa-reply"></i> Répondre</button></p>
+            <p align="center"><button type="submit" id="newTopicReplyButton" class="btn btn-success"><i class="fas fa-reply"></i> Répondre</button></p>
         {{ form_end(form) }}
     {% else %}
         <hr>

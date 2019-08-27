@@ -2,19 +2,27 @@
 
 namespace App\Tests\Controller\Forum;
 
-use App\Entity\Subcategory;
-use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
-use Symfony\Component\HttpFoundation\Response;
+use Liip\FunctionalTestBundle\Test\WebTestCase;
+use Liip\TestFixturesBundle\Test\FixturesTrait;
 
 class SubcategoryControllerTest extends WebTestCase
 {
+    use FixturesTrait;
+
+    private $fixtures;
+
+    public function setUp()
+    {
+        $this->fixtures = $this->loadFixtures(['App\DataFixtures\SubcategoryFixtures'])->getReferenceRepository();
+    }
+
     public function testShowSubcategory()
     {
-        $client = static::createClient();
-        $subcategory = $client->getContainer()->get('doctrine')->getRepository(Subcategory::class)->find(1);
+        $subcategory = $this->fixtures->getReference('subcategory-1');
+        $client = $this->makeClient();
         $crawler = $client->request('GET', sprintf('/%s.%d', $subcategory->getSlug(), $subcategory->getId()));
 
-        $this->assertEquals(Response::HTTP_OK, $client->getResponse()->getStatusCode());
+        $this->isSuccessful($client->getResponse());
         $this->assertContains($subcategory->getName(), $crawler->filter('h1')->text());
     }
 }

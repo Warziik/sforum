@@ -2,27 +2,27 @@
 
 namespace App\Tests\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
-use Symfony\Component\HttpFoundation\Response;
+use Liip\FunctionalTestBundle\Test\WebTestCase;
 
-class ForumControllerTest extends WebTestCase
+class DefaultControllerTest extends WebTestCase
 {
     /**
      * @dataProvider getPublicUrls
      */
-    public function testPublicUrls(string $url)
+    public function testPublicUrls(string $route)
     {
-        $client = static::createClient();
+        $url = $this->getUrl($route);
+        $client = $this->makeClient();
         $client->request('GET', $url);
 
-        $this->assertEquals(Response::HTTP_OK, $client->getResponse()->getStatusCode());
+        $this->isSuccessful($client->getResponse());
     }
 
     public function getPublicUrls()
     {
-        yield ['/'];
-        yield ['/connexion'];
-        yield ['/mot-de-passe-oublie'];
-        yield ['/inscription'];
+        yield ['home'];
+        yield ['security.login'];
+        yield ['security.forgotPassword'];
+        yield ['security.register'];
     }
 }

@@ -2,18 +2,29 @@
 
 namespace App\Tests\Controller;
 
-use App\Entity\User;
-use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
-use Symfony\Component\HttpFoundation\Response;
+use Liip\FunctionalTestBundle\Test\WebTestCase;
+use Liip\TestFixturesBundle\Test\FixturesTrait;
 
 class UserControllerTest extends WebTestCase
 {
+    use FixturesTrait;
+
+    private $userFixtures;
+
+    public function setUp()
+    {
+        $this->userFixtures = $this->loadFixtures(['App\DataFixtures\UserFixtures'])->getReferenceRepository();
+    }
+
     public function testAccessProfile()
     {
-        $client = static::createClient();
-        $user = $client->getContainer()->get('doctrine')->getRepository(User::class)->find(1);
-        $client->request('GET', sprintf('/membres/%s.%d', $user->getSlug(), $user->getId()));
+        $user = $this->userFixtures->getReference('user-1');
 
-        $this->assertEquals(Response::HTTP_OK, $client->getResponse()->getStatusCode());
+        $url = $this->getUrl('user.profile', ['slug' => $user->getSlug(), 'id' => $user->getId()]);
+
+        $client = $this->makeClient();
+        $client->request('GET', $url);
+
+        $this->isSuccessful($client->getResponse());
     }
 }

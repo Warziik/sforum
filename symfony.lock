@@ -148,6 +148,9 @@
     "knplabs/knp-paginator-bundle": {
         "version": "v4.0.0"
     },
+    "liip/functional-test-bundle": {
+        "version": "3.0.0"
+    },
     "liip/imagine-bundle": {
         "version": "1.8",
         "recipe": {
@@ -160,6 +163,9 @@
             "./config/packages/liip_imagine.yaml",
             "./config/routes/liip_imagine.yaml"
         ]
+    },
+    "liip/test-fixtures-bundle": {
+        "version": "1.2.0"
     },
     "monolog/monolog": {
         "version": "1.24.0"
@@ -253,7 +259,7 @@
         ]
     },
     "symfony/css-selector": {
-        "version": "v4.3.3"
+        "version": "v4.3.4"
     },
     "symfony/debug": {
         "version": "v4.3.2"

@@ -37,6 +37,8 @@
     "require-dev": {
         "doctrine/doctrine-fixtures-bundle": "^3.2",
         "fzaninotto/faker": "^1.8",
+        "liip/functional-test-bundle": "3.0.0",
+        "liip/test-fixtures-bundle": "^1.2",
         "symfony/debug-pack": "*",
         "symfony/maker-bundle": "^1.0",
         "symfony/profiler-pack": "*",

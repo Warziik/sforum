@@ -23,6 +23,7 @@ class TopicresponseFixtures extends Fixture implements DependentFixtureInterface
             $topicresponse->setAuthor($user);
 
             $manager->persist($topicresponse);
+            $this->addReference('topicreply-' . $i, $topicresponse);
         }
         $manager->flush();
     }

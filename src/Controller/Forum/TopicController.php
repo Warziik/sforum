@@ -82,7 +82,7 @@ class TopicController extends AbstractController
 
     /**
      * @IsGranted("ROLE_USER")
-     * @Route("/sujets/{slug}-{id}/edit", name="forum.topic_edit", requirements={"slug"="^[a-zA-Z0-9-_]+$", "id"="\d+"}, methods={"GET", "POST"})
+     * @Route("/sujets/{slug}.{id}/edit", name="forum.topic_edit", requirements={"slug"="^[a-zA-Z0-9-_]+$", "id"="\d+"}, methods={"GET", "POST"})
      *
      * @param Request $request
      * @param Topic $topic
@@ -108,7 +108,7 @@ class TopicController extends AbstractController
 
     /**
      * @IsGranted("ROLE_USER")
-     * @Route("/sujets/{slug}-{id}", name="forum.topic_delete", requirements={"slug"="^[a-zA-Z0-9-_]+$", "id"="\d+"}, methods={"DELETE"})
+     * @Route("/sujets/{slug}.{id}", name="forum.topic_delete", requirements={"slug"="^[a-zA-Z0-9-_]+$", "id"="\d+"}, methods={"DELETE"})
      *
      * @param Request $request
      * @param Topic $topic
