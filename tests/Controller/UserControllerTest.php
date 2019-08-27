@@ -14,6 +14,7 @@ class UserControllerTest extends WebTestCase
     public function setUp()
     {
         $this->userFixtures = $this->loadFixtures(['App\DataFixtures\UserFixtures'])->getReferenceRepository();
+        parent::setUp();
     }
 
     public function testAccessProfile()
