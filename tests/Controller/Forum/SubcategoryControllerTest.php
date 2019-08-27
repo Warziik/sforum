@@ -14,7 +14,6 @@ class SubcategoryControllerTest extends WebTestCase
     public function setUp()
     {
         $this->fixtures = $this->loadFixtures(['App\DataFixtures\SubcategoryFixtures'])->getReferenceRepository();
-        parent::setUp();
     }
 
     public function testShowSubcategory()

@@ -17,7 +17,6 @@ class TopicControllerTest extends WebTestCase
     {
         $this->userFixtures = $this->loadFixtures(['App\DataFixtures\UserFixtures'])->getReferenceRepository();
         $this->topicFixtures = $this->loadFixtures(['App\DataFixtures\TopicFixtures'])->getReferenceRepository();
-        parent::setUp();
     }
 
     public function testCreateTopic()

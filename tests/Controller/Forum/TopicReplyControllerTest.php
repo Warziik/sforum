@@ -19,7 +19,6 @@ class TopicReplyControllerTest extends WebTestCase
         $this->userFixtures = $this->loadFixtures(['App\DataFixtures\UserFixtures'])->getReferenceRepository();
         $this->topicFixtures = $this->loadFixtures(['App\DataFixtures\TopicFixtures'])->getReferenceRepository();
         $this->topicReplyFixtures = $this->loadFixtures(['App\DataFixtures\TopicresponseFixtures'])->getReferenceRepository();
-        parent::setUp();
     }
 
     public function testCreateTopicReply()
