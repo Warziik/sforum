@@ -39,10 +39,11 @@
         "fzaninotto/faker": "^1.8",
         "liip/functional-test-bundle": "3.0.0",
         "liip/test-fixtures-bundle": "^1.2",
+        "symfony/css-selector": "4.3.*",
         "symfony/debug-pack": "*",
         "symfony/maker-bundle": "^1.0",
+        "symfony/phpunit-bridge": "^4.3",
         "symfony/profiler-pack": "*",
-        "symfony/test-pack": "^1.0",
         "symfony/web-server-bundle": "4.3.*"
     },
     "config": {
