@@ -16,5 +16,11 @@ php bin/console server:run
 # lance le server
 ```
 
+## Screenshots
+<img src="https://image.noelshack.com/fichiers/2019/37/5/1568332632-topic-sforum.jpg" width="45%">
+<img src="https://image.noelshack.com/fichiers/2019/37/5/1568332632-userprofile-sforum.jpg" width="45%">
+<img src="https://image.noelshack.com/fichiers/2019/37/5/1568332632-forgot-password.jpg" width="45%">
+<img src="https://image.noelshack.com/fichiers/2019/37/5/1568332632-admin-sforum.jpg" width="45%">
+
 ## Licence
 Dépôt sous licence [MIT](https://choosealicense.com/licenses/mit/).
