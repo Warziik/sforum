@@ -1,6 +1,8 @@
 # SForum
 Un forum de discussion développé avec le framework [Symfony](https://symfony.com/).
 
+Ce projet n'est plus maintenu et est remplacé par [Nodoo](https://github.com/Warziik/nodoo-forum).
+
 ## Installation
 ```
 make
